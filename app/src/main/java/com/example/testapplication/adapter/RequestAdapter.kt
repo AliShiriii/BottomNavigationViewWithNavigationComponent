@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testapplication.Model.GetContent
-import com.example.testapplication.Model.ResultRequest
+import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.R
 import kotlinx.android.synthetic.main.row_view.view.*
 
 class RequestAdapter() : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
 
 
-    private var items = ArrayList<GetContent>()
+    private var items = emptyList<RequestBody>()
 
-    fun setData(item: ArrayList<GetContent>?){
+    fun setData(item: List<RequestBody>?){
 
         if (item != null) {
             items = item
@@ -23,6 +23,7 @@ class RequestAdapter() : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
         notifyDataSetChanged()
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestAdapter.MyViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_view, parent, false)
@@ -50,12 +51,16 @@ class RequestAdapter() : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemVew : View) :RecyclerView.ViewHolder(itemVew){
 
-        fun bind(resultRequest: GetContent) {
+        fun bind(requestBode: RequestBody) {
 
             itemView.apply {
 
-                    title_request.text = resultRequest.Title.toString()
-                    summary_request.text = resultRequest.Summary.toString()
+                title_request.text = requestBode.Result.GetContentList[adapterPosition].Title
+                summary_request.text = requestBode.Result.GetContentList[adapterPosition].Summary
+
+
+                img_request
+
 
             }
         }

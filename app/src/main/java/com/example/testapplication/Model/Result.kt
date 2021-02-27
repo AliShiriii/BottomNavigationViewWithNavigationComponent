@@ -1,6 +1,6 @@
 package com.example.testapplication.Model
 
-data class ResultX(
+data class Result(
     val GetContentList: List<GetContent>,
     val TotalPages: Int
 )

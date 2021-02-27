@@ -1,7 +1,7 @@
 package com.example.testapplication.Model
 
-data class ResultRequest(
+data class RequestBody(
     val Message: String,
-    val Result: ResultX,
+    val Result: Result,
     val Status: Int
 )

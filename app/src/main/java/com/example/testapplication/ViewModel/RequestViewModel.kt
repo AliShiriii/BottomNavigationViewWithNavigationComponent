@@ -4,9 +4,8 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.Request
-import com.example.testapplication.Model.ResultRequest
+import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.Repository.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,9 +20,9 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val _pushBody = MutableLiveData<Response<List<GetContent>>>()
+    private val _pushBody = MutableLiveData<Response<List<RequestBody>>>()
 
-    val pushPost: LiveData<Response<List<GetContent>>>
+    val pushPost: LiveData<Response<List<RequestBody>>>
         get() = _pushBody
 
 

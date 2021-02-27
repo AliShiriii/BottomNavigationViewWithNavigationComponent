@@ -32,18 +32,4 @@ object AppModule {
     @Singleton
     fun provideMovieApi(retrofit: Retrofit): RequestApi =
         retrofit.create(RequestApi::class.java)
-
-//    @Provides
-//    @Singleton
-//    fun provideFavoriteMoveDataBase(@ApplicationContext context: Context) =
-//        Room.databaseBuilder(
-//            context,
-//            FavoriteMovieDataBase::class.java,
-//            "movie_db"
-//        ).build()
-//
-//
-//    @Provides
-//    @Singleton
-//    fun provideFavoriteMoveDao(db: FavoriteMovieDataBase) = db.getFavoriteMovieDao()
 }

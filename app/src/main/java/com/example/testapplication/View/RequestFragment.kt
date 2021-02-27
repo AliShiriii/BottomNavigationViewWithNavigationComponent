@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.Request
-import com.example.testapplication.R
+import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.ViewModel.RequestViewModel
 import com.example.testapplication.adapter.RequestAdapter
 import com.example.testapplication.databinding.FragmentRequestBinding
@@ -36,8 +34,8 @@ class RequestFragment : Fragment() {
 
         adpter = RequestAdapter()
 
-        binding.recyclerId.setHasFixedSize(true)
-        binding.recyclerId.adapter = adpter
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.adapter = adpter
 
         val reques = Request(2, null, 10, 1, "createdate", "desc")
         viewModel.pushBody(reques)
@@ -46,13 +44,11 @@ class RequestFragment : Fragment() {
 
             if (newData.isSuccessful) {
 
-                adpter.setData(newData.body() as ArrayList<GetContent>?)
+                adpter.setData(newData.body())
 
             }
 
         })
-
-
 
         return binding.root
     }

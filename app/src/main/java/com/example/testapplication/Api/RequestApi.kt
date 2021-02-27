@@ -1,10 +1,7 @@
 package com.example.testapplication.Api
 
-import com.example.testapplication.Model.Example
-import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.Request
-import com.example.testapplication.Model.ResultRequest
-import retrofit2.Call
+import com.example.testapplication.Model.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -18,6 +15,6 @@ interface RequestApi {
     }
 
     @POST("mobile/request.asmx/GetContent/")
-    suspend fun pushBody(@Body request: Request) : Response<List<GetContent>>
+    suspend fun pushBody(@Body request: Request) : Response<List<RequestBody>>
 
 }
