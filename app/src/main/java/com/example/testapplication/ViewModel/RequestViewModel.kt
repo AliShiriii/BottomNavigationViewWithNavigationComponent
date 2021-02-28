@@ -25,7 +25,6 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
     val pushPost: LiveData<Response<List<RequestBody>>>
         get() = _pushBody
 
-
     fun pushBody(request: Request) {
 
         uiScope.launch {

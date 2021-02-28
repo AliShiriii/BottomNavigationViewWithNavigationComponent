@@ -1,6 +1,7 @@
 package com.example.testapplication.View
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.testapplication.ViewModel.RequestViewModel
 import com.example.testapplication.adapter.RequestAdapter
 import com.example.testapplication.databinding.FragmentRequestBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
@@ -37,13 +39,15 @@ class RequestFragment : Fragment() {
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = adpter
 
-        val reques = Request(2, null, 10, 1, "createdate", "desc")
-        viewModel.pushBody(reques)
+//        val reques = Request(2, null, 10, 1, "createdate", "desc")
+
+        viewModel.pushBody(Request(2, null, 10, 1, "createdate", "desc"))
 
         viewModel.pushPost.observe(viewLifecycleOwner, Observer { newData ->
 
             if (newData.isSuccessful) {
 
+                Log.i("TAG: ", newData.body().toString())
                 adpter.setData(newData.body())
 
             }

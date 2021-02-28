@@ -3,13 +3,16 @@ package com.example.testapplication.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.R
 import kotlinx.android.synthetic.main.row_view.view.*
 
-class RequestAdapter() : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
+class RequestAdapter() : RecyclerView.Adapter< RequestAdapter.MyViewHolder> () {
 
 
     private var items = emptyList<RequestBody>()
@@ -49,22 +52,36 @@ class RequestAdapter() : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
 
     }
 
+    @Suppress("DEPRECATION")
     inner class MyViewHolder(itemVew : View) :RecyclerView.ViewHolder(itemVew){
 
         fun bind(requestBode: RequestBody) {
 
             itemView.apply {
 
-                title_request.text = requestBode.Result.GetContentList[adapterPosition].Title
-                summary_request.text = requestBode.Result.GetContentList[adapterPosition].Summary
+                title_request.text = requestBode.result.getContentList[adapterPosition].title
+                summary_request.text = requestBode.result.getContentList[adapterPosition].summary
 
-
-                img_request
-
+                Glide.with(itemView)
+                    .load(requestBode.result.getContentList[adapterPosition].landscapeImage)
+                    .into(itemView.img_request)
 
             }
         }
 
     }
-
+//
+//    companion object{
+//
+//        private val PERSON_COMPARATOR = object : DiffUtil.ItemCallback<RequestBody>(){
+//            override fun areItemsTheSame(oldItem: RequestBody, newItem: RequestBody): Boolean =
+//
+//                oldItem.Result.GetContentList[0].ContentID == newItem.Result.GetContentList[0].ContentID
+//
+//            override fun areContentsTheSame(oldItem: RequestBody, newItem: RequestBody): Boolean =
+//
+//                oldItem == newItem
+//
+//        }
+//    }
 }

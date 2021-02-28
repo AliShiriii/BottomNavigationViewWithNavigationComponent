@@ -9,6 +9,8 @@
         android:id="@+id/requestFragment"
         android:name="com.example.testapplication.View.RequestFragment"
         android:label="fragment_request"
-        tools:layout="@layout/fragment_request" />
+        tools:layout="@layout/fragment_request"
+
+        />
 
 </navigation>

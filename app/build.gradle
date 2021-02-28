@@ -111,15 +111,17 @@ dependencies {
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
-//    //paging
-//    implementation 'androidx.paging:paging-runtime:3.0.0-beta01'
-//    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta01'
-//    testImplementation 'androidx.paging:paging-common:3.0.0-beta01'
+    //paging
+    implementation 'androidx.paging:paging-runtime:3.0.0-beta01'
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta01'
+    testImplementation 'androidx.paging:paging-common:3.0.0-beta01'
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation "com.squareup.okhttp3:logging-interceptor:4.8.1"
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
