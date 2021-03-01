@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.Request
-import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.ViewModel.RequestViewModel
 import com.example.testapplication.adapter.RequestAdapter
 import com.example.testapplication.databinding.FragmentRequestBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
@@ -38,21 +38,14 @@ class RequestFragment : Fragment() {
 
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = adpter
+        viewModel.getBody()
 
-//        val reques = Request(2, null, 10, 1, "createdate", "desc")
+        viewModel.pushPost.observe(viewLifecycleOwner){
 
-        viewModel.pushBody(Request(2, null, 10, 1, "createdate", "desc"))
-
-        viewModel.pushPost.observe(viewLifecycleOwner, Observer { newData ->
-
-            if (newData.isSuccessful) {
-
-                Log.i("TAG: ", newData.body().toString())
-                adpter.setData(newData.body())
+//                Log.i("TAG: ", newData.toString())
+                adpter.submitData(viewLifecycleOwner.lifecycle, it)
 
             }
-
-        })
 
         return binding.root
     }

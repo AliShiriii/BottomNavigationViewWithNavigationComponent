@@ -1,6 +1,7 @@
 package com.example.testapplication.Model
 
 data class Request(
+
     val requestType: Int,
     val requestId: String?,
     val pageSize: Int,

@@ -1,11 +1,13 @@
 package com.example.testapplication.Api
 
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
 import com.example.testapplication.Model.Request
+import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RequestApi {
 
@@ -15,8 +17,8 @@ interface RequestApi {
 
     }
 
-    @Headers("Content-Type:application/json", "Accept-Language:fa-IR")
-    @POST("GetContent/")
-    suspend fun pushBody(@Body request: Request) : Response<List<RequestBody>>
+    @Headers("Content-Type:application/json")
+    @POST("GetContent")
+    suspend fun getBody(@Body sendRequest: SendRequest) : Flow<PagingData<RequestBody>>
 
 }
