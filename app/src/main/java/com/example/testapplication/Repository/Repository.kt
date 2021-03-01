@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.testapplication.Api.RequestApi
+import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.Paging.RequestPagingSource
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val requestApi: RequestApi) {
 
-     fun getBody(): Flow<PagingData<RequestBody>> {
+     fun getBody(): Flow<PagingData<GetContent>> {
 
        return Pager(
 

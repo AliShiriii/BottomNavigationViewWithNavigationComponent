@@ -2,6 +2,7 @@ package com.example.testapplication.Api
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
+import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.Request
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
@@ -19,6 +20,6 @@ interface RequestApi {
 
     @Headers("Content-Type:application/json")
     @POST("GetContent")
-    suspend fun getBody(@Body sendRequest: SendRequest) : Flow<PagingData<RequestBody>>
+    suspend fun getBody(@Body sendRequest: SendRequest) : Response<List<GetContent>>
 
 }

@@ -8,12 +8,13 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.R
 import kotlinx.android.synthetic.main.row_view.view.*
 import retrofit2.Response
 
-class RequestAdapter() : PagingDataAdapter<RequestBody, RequestAdapter.MyViewHolder>(
+class RequestAdapter() : PagingDataAdapter<GetContent, RequestAdapter.MyViewHolder>(
     PERSON_COMPARATOR) {
 
 //
@@ -58,15 +59,15 @@ class RequestAdapter() : PagingDataAdapter<RequestBody, RequestAdapter.MyViewHol
     @Suppress("DEPRECATION")
     inner class MyViewHolder(itemVew: View) : RecyclerView.ViewHolder(itemVew) {
 
-        fun bind(requestBode: RequestBody) {
+        fun bind(requestBody: GetContent) {
 
             itemView.apply {
 
-                title_request.text = requestBode.result.getContentList[adapterPosition].title
-                summary_request.text = requestBode.result.getContentList[adapterPosition].summary
+                title_request.text = requestBody.title
+                summary_request.text = requestBody.summary
 
                 Glide.with(itemView)
-                    .load(requestBode.result.getContentList[adapterPosition].landscapeImage)
+                    .load(requestBody.landscapeImage)
                     .into(itemView.img_request)
 
             }
@@ -76,12 +77,12 @@ class RequestAdapter() : PagingDataAdapter<RequestBody, RequestAdapter.MyViewHol
 
     companion object{
 
-        private val PERSON_COMPARATOR = object : DiffUtil.ItemCallback<RequestBody>(){
-            override fun areItemsTheSame(oldItem: RequestBody, newItem: RequestBody): Boolean =
+        private val PERSON_COMPARATOR = object : DiffUtil.ItemCallback<GetContent>(){
+            override fun areItemsTheSame(oldItem: GetContent, newItem: GetContent): Boolean =
 
-                oldItem.result.getContentList[0].contentID == newItem.result.getContentList[0].contentID
+                oldItem.contentID == newItem.contentID
 
-            override fun areContentsTheSame(oldItem: RequestBody, newItem: RequestBody): Boolean =
+            override fun areContentsTheSame(oldItem: GetContent, newItem: GetContent): Boolean =
 
                 oldItem == newItem
 

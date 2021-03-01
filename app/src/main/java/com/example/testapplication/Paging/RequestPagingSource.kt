@@ -12,9 +12,9 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSource<Int, RequestBody>() {
+class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSource<Int, GetContent>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RequestBody> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetContent> {
 
         val page = params.key ?: 1
 
@@ -31,7 +31,7 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
 
             val result = api.getBody(SendRequest(jsonObject))
 
-            val response = result
+            val response = result.body()
 
             LoadResult.Page(
 
@@ -50,7 +50,7 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, RequestBody>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, GetContent>): Int? {
         TODO("Not yet implemented")
     }
 }

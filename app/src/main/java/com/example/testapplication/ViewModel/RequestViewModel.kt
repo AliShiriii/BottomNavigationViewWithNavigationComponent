@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
 import com.example.testapplication.Repository.Repository
@@ -24,19 +25,24 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val _pushBody = MutableLiveData<Flow<PagingData<RequestBody>>>()
+//    private val _pushBody = MutableLiveData<Flow<PagingData<GetContent>>>()
+//
+//    val pushPost: LiveData<Flow<PagingData<GetContent>>>
+//        get() = _pushBody
 
-    val pushPost: LiveData<Flow<PagingData<RequestBody>>>
-        get() = _pushBody
+    var pushPost : Flow<PagingData<GetContent>>? = null
 
-    fun getBody() {
+    fun getBody(): Flow<PagingData<GetContent>>? {
 
         uiScope.launch(Dispatchers.IO) {
 
             val request = repository.getBody().cachedIn(viewModelScope)
 
-            _pushBody.value = request
+            pushPost = request
 
         }
+
+        return pushPost
+
     }
 }

@@ -24,37 +24,38 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
-//    @Singleton
-//    @Provides
-//    fun provideConnectivity(@ApplicationContext context: Context): Connectivity {
-//        return Connectivity(context)
-//    }
+    @Singleton
+    @Provides
+    fun provideConnectivity(@ApplicationContext context: Context): Connectivity {
+        return Connectivity(context)
+    }
 
-//    @Singleton
-//    @Provides
-//    fun provideGsonBuilder(): Gson{
-//        return GsonBuilder()
-//            .setLenient()
-//            .create()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideOkHttp(): OkHttpClient {
-//        return OkHttpClient.Builder()
-//            .readTimeout(8000, TimeUnit.SECONDS)
-//            .writeTimeout(8000,TimeUnit.SECONDS)
-//            .connectTimeout(1, TimeUnit.MINUTES)
-//            .build()
-//    }
+    @Singleton
+    @Provides
+    fun provideGsonBuilder(): Gson{
+        return GsonBuilder()
+            .setLenient()
+            .create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttp(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .readTimeout(8000, TimeUnit.SECONDS)
+            .writeTimeout(8000,TimeUnit.SECONDS)
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .build()
+    }
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit =
+    fun provideRetrofit(client: OkHttpClient, gson: Gson): Retrofit =
 
         Retrofit.Builder()
+            .client(client)
             .baseUrl(RequestApi.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
     @Provides
