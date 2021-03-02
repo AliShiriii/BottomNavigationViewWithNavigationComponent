@@ -1,5 +1,6 @@
 package com.example.testapplication.Paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.testapplication.Api.RequestApi
@@ -23,7 +24,7 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
             val jsonObject = JSONObject()
 
             jsonObject.put("requestType", 2)
-            jsonObject.put("requestId", " ")
+            jsonObject.put("requestId", "null")
             jsonObject.put("pageSize", 10)
             jsonObject.put("pageIndex", 1)
             jsonObject.put("orderBy", "createdate")
@@ -31,15 +32,14 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
 
             val result = api.getBody(SendRequest(jsonObject))
 
-            val response = result.body()
+            val response = result.body()?.result?.getContentList
 
-            LoadResult.Page(
-
+             LoadResult.Page(
                 data = response!!,
-                prevKey = if (page == 1) null else page -1,
-                nextKey = if (response.isEmpty()) null else page +1
-
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if (response.isEmpty()) null else page + 1
             )
+
 
         }catch (exception : IOException){
 
@@ -51,6 +51,11 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
     }
 
     override fun getRefreshKey(state: PagingState<Int, GetContent>): Int? {
-        TODO("Not yet implemented")
+
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+
+        }
     }
 }

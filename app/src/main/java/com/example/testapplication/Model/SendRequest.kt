@@ -4,5 +4,5 @@ import org.json.JSONObject
 
 data class SendRequest(
 
-    val jsonObject: JSONObject
+    val request: JSONObject
 )

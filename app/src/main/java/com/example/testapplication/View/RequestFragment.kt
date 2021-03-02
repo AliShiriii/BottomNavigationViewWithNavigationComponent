@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.Request
+import com.example.testapplication.R
 import com.example.testapplication.ViewModel.RequestViewModel
 import com.example.testapplication.adapter.RequestAdapter
 import com.example.testapplication.databinding.FragmentRequestBinding
@@ -22,8 +24,10 @@ import org.json.JSONObject
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
 
-    private var _binding: FragmentRequestBinding? = null
-    private val binding get() = _binding!!
+//    private var _binding: FragmentRequestBinding? = null
+//    private val binding get() = _binding!!
+
+    private lateinit var binding : FragmentRequestBinding
 
     private val viewModel: RequestViewModel by viewModels()
 
@@ -35,19 +39,20 @@ class RequestFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
 
-        _binding = FragmentRequestBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_request, container, false)
 
         adpter = RequestAdapter()
 
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = adpter
+
         viewModel.getBody()
 
         lifecycleScope.launch {
-            viewModel.pushPost?.collectLatest {
+            viewModel.pushPost?.collectLatest { newData ->
 
 //                Log.i("TAG: ", newData.toString())
-                adpter.submitData(it)
+                adpter.submitData(viewLifecycleOwner.lifecycle, newData)
 
             }
         }

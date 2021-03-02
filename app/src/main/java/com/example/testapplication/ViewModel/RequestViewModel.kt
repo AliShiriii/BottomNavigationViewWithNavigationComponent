@@ -10,6 +10,7 @@ import androidx.paging.cachedIn
 import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
+import com.example.testapplication.Model.Result
 import com.example.testapplication.Repository.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -6,6 +6,7 @@ import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.Request
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
+import com.example.testapplication.Model.Result
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.*
@@ -18,8 +19,7 @@ interface RequestApi {
 
     }
 
-    @Headers("Content-Type:application/json")
     @POST("GetContent")
-    suspend fun getBody(@Body sendRequest: SendRequest) : Response<List<GetContent>>
+    suspend fun getBody(@Body sendRequest: SendRequest) : Response<RequestBody>
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Category(
 
-    val ageRangeId: Any,
+    val ageRangeId: String,
     val categoryID: Int,
     val defaultImage: String,
     val image: String,
