@@ -7,12 +7,8 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.testapplication.Api.RequestApi
 import com.example.testapplication.Model.GetContent
-import com.example.testapplication.Model.SendRequest
-import com.example.testapplication.Model.RequestBody
-import com.example.testapplication.Model.Result
 import com.example.testapplication.Paging.RequestPagingSource
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 import javax.inject.Inject
 
 class Repository @Inject constructor(private val requestApi: RequestApi) {
@@ -22,9 +18,9 @@ class Repository @Inject constructor(private val requestApi: RequestApi) {
        return Pager(
 
            config = PagingConfig(
-               pageSize = 5,
+               pageSize = 10,
                maxSize = 50,
-               enablePlaceholders = true
+               enablePlaceholders = false
            ),
 
            pagingSourceFactory = { RequestPagingSource(requestApi) }

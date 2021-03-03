@@ -3,17 +3,13 @@ package com.example.testapplication.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.testapplication.Model.GetContent
-import com.example.testapplication.Model.RequestBody
-import com.example.testapplication.Model.Result
 import com.example.testapplication.R
 import kotlinx.android.synthetic.main.row_view.view.*
-import retrofit2.Response
 
 class RequestAdapter() : PagingDataAdapter<GetContent, RequestAdapter.MyViewHolder>(
    PERSON_COMPARATOR ) {
@@ -64,11 +60,11 @@ class RequestAdapter() : PagingDataAdapter<GetContent, RequestAdapter.MyViewHold
 
             itemView.apply {
 
-                title_request.text = requestBody.title
-                summary_request.text = requestBody.summary
+                title_request.text = requestBody.Title
+                summary_request.text = requestBody.Summary
 
                 Glide.with(itemView)
-                    .load(requestBody.landscapeImage)
+                    .load(requestBody.LandscapeImage)
                     .into(itemView.img_request)
 
             }
@@ -81,7 +77,7 @@ class RequestAdapter() : PagingDataAdapter<GetContent, RequestAdapter.MyViewHold
 
             override fun areItemsTheSame(oldItem: GetContent, newItem: GetContent): Boolean =
 
-                oldItem.contentID == newItem.contentID
+                oldItem.ContentID == newItem.ContentID
 
             override fun areContentsTheSame(oldItem: GetContent, newItem: GetContent): Boolean =
 

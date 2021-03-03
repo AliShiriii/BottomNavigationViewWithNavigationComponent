@@ -1,14 +1,7 @@
 package com.example.testapplication.Api
 
-import androidx.lifecycle.LiveData
-import androidx.paging.PagingData
-import com.example.testapplication.Model.GetContent
-import com.example.testapplication.Model.Request
-import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.RequestBody
-import com.example.testapplication.Model.Result
-import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
+import com.example.testapplication.Model.SendRequest
 import retrofit2.http.*
 
 interface RequestApi {
@@ -20,6 +13,6 @@ interface RequestApi {
     }
 
     @POST("GetContent")
-    suspend fun getBody(@Body sendRequest: SendRequest) : Response<RequestBody>
+    suspend fun getBody(@Body sendRequest: SendRequest) : RequestBody
 
 }

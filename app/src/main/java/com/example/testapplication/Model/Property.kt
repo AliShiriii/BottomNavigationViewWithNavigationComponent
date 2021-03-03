@@ -1,11 +1,7 @@
 package com.example.testapplication.Model
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
 data class Property(
-
-    val name: String,
-    val propertyId: Int,
-    val value: String
+    val Name: String,
+    val PropertyId: Int,
+    val Value: String
 )

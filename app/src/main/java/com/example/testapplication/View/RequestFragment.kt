@@ -31,7 +31,7 @@ class RequestFragment : Fragment() {
 
     private val viewModel: RequestViewModel by viewModels()
 
-    private lateinit var adpter : RequestAdapter
+    private lateinit var adapter : RequestAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +41,10 @@ class RequestFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_request, container, false)
 
-        adpter = RequestAdapter()
+        adapter = RequestAdapter()
 
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = adpter
+        binding.recyclerView.adapter = adapter
 
         viewModel.getBody()
 
@@ -52,7 +52,7 @@ class RequestFragment : Fragment() {
             viewModel.pushPost?.collectLatest { newData ->
 
 //                Log.i("TAG: ", newData.toString())
-                adpter.submitData(viewLifecycleOwner.lifecycle, newData)
+                adapter.submitData(viewLifecycleOwner.lifecycle, newData)
 
             }
         }

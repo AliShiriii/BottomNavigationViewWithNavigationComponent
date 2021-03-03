@@ -8,16 +8,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.testapplication.Model.GetContent
-import com.example.testapplication.Model.SendRequest
-import com.example.testapplication.Model.RequestBody
-import com.example.testapplication.Model.Result
 import com.example.testapplication.Repository.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 @Suppress("DEPRECATION")
 class RequestViewModel @ViewModelInject constructor(private val repository: Repository) :
@@ -26,14 +22,14 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-//    private val _pushBody = MutableLiveData<Flow<PagingData<GetContent>>>()
+//    private val _pushBody = MutableLiveData<PagingData<GetContent>>()
 //
-//    val pushPost: LiveData<Flow<PagingData<GetContent>>>
+//    val pushPost: LiveData<PagingData<GetContent>>
 //        get() = _pushBody
 
     var pushPost : Flow<PagingData<GetContent>>? = null
 
-    fun getBody(): Flow<PagingData<GetContent>>? {
+    fun getBody() {
 
         uiScope.launch(Dispatchers.IO) {
 
@@ -42,8 +38,6 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
             pushPost = request
 
         }
-
-        return pushPost
 
     }
 }

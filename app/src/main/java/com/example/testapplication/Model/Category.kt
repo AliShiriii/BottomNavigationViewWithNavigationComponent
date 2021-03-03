@@ -1,18 +1,14 @@
 package com.example.testapplication.Model
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
 data class Category(
-
-    val ageRangeId: String,
-    val categoryID: Int,
-    val defaultImage: String,
-    val image: String,
-    val isFollowed: Boolean,
-    val isSelected: Boolean,
-    val parentID: Int,
-    val sectionPriority: Int,
-    val title: String,
-    val zoneID: Int
+    val AgeRangeId: String,
+    val CategoryID: Int,
+    val DefaultImage: String,
+    val Image: String,
+    val IsFollowed: Boolean,
+    val IsSelected: Boolean,
+    val ParentID: Int,
+    val SectionPriority: Int,
+    val Title: String,
+    val ZoneID: Int
 )
