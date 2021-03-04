@@ -11,6 +11,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+
 class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSource<Int, GetContent>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetContent> {
@@ -32,7 +33,7 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
 
             val response = result.Result.GetContentList
 
-             LoadResult.Page(
+            LoadResult.Page(
                 data = response,
                 prevKey = if (page == 1) null else page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1
