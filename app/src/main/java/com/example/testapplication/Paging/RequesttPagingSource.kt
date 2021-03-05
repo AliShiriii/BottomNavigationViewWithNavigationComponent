@@ -39,7 +39,6 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
                 nextKey = if (response.isEmpty()) null else page + 1
             )
 
-
         }catch (exception : IOException){
 
             LoadResult.Error(exception)
@@ -47,6 +46,7 @@ class RequestPagingSource @Inject constructor(val api: RequestApi) : PagingSourc
 
             LoadResult.Error(exception)
         }
+
     }
 
     override fun getRefreshKey(state: PagingState<Int, GetContent>): Int? {

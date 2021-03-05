@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.testapplication.ViewModel
 
 import androidx.hilt.lifecycle.ViewModelInject
@@ -15,7 +17,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-@Suppress("DEPRECATION")
 class RequestViewModel @ViewModelInject constructor(private val repository: Repository) :
     ViewModel() {
 

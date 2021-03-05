@@ -11,7 +11,7 @@ data class GetContent(
     val DisLikeCount: Int,
     val DisLikeStatus: Boolean,
     val Duration: Int,
-    val EnglishBody: Any,
+    val EnglishBody: String,
     val FavoriteStatus: Boolean,
     val LandscapeImage: String,
     val LandscapeImage9X4: String,
