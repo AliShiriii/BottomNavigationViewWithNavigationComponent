@@ -33,7 +33,7 @@ class RequestFragment : Fragment() {
 
     private lateinit var adapter : RequestAdapter
 
-    override fun onCreateView(
+    override  fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -46,13 +46,14 @@ class RequestFragment : Fragment() {
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = adapter
 
-        viewModel.getBody()
-
         lifecycleScope.launch {
-            viewModel.pushPost?.collectLatest { newData ->
 
-//                Log.i("TAG: ", newData.toString())
-                adapter.submitData(viewLifecycleOwner.lifecycle, newData)
+            viewModel.getBody()
+
+            viewModel.pushPost?.observe(viewLifecycleOwner) { response ->
+
+                Log.i("TAG: ", response.toString())
+                adapter.submitData(viewLifecycleOwner.lifecycle, response)
 
             }
         }

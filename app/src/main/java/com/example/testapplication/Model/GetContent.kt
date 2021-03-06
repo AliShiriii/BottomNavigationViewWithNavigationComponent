@@ -32,7 +32,7 @@ data class GetContent(
     val ThumbImage: String,
     val Title: String,
     val Type: Int,
-    val UpdateDate: Int,
+    val UpdateDate: Double,
     val ViewCount: Int,
     val ZoneID: Int
 )

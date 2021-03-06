@@ -5,6 +5,7 @@ package com.example.testapplication.di
 import android.content.Context
 import androidx.room.Room
 import com.example.testapplication.Api.Connectivity
+import com.example.testapplication.Api.PrettyPrintLogger
 import com.example.testapplication.Api.RequestApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -14,6 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -32,18 +34,36 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideGsonBuilder(): Gson{
+    fun provideGsonBuilder(): GsonBuilder{
         return GsonBuilder()
-            .setLenient()
+
+    }
+
+    @Singleton
+    @Provides
+    fun provideGson(builder: GsonBuilder): Gson{
+
+        return builder.setLenient()
             .create()
     }
 
     @Singleton
     @Provides
-    fun provideOkHttp(): OkHttpClient {
+    fun provideLogIntercept(builder: GsonBuilder): HttpLoggingInterceptor {
+        val logging: HttpLoggingInterceptor
+        logging = HttpLoggingInterceptor(PrettyPrintLogger(builder))
+        //it is a good practice not to write logs in release
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        return logging
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttp(logging: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(logging)
             .readTimeout(8000, TimeUnit.SECONDS)
-            .writeTimeout(8000,TimeUnit.SECONDS)
+            .writeTimeout(8000, TimeUnit.SECONDS)
             .connectTimeout(1, TimeUnit.MINUTES)
             .build()
     }

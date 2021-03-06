@@ -28,17 +28,13 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
 //    val pushPost: LiveData<PagingData<GetContent>>
 //        get() = _pushBody
 
-    var pushPost : Flow<PagingData<GetContent>>? = null
+    var pushPost : LiveData<PagingData<GetContent>>? = null
 
     fun getBody() {
 
-        uiScope.launch(Dispatchers.IO) {
-
-            val request = repository.getBody().cachedIn(viewModelScope)
+            val request = repository.getBody()
 
             pushPost = request
-
-        }
 
     }
 }
