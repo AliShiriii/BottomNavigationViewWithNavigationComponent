@@ -1,5 +1,10 @@
 package com.example.testapplication.Model
 
+import android.os.Parcelable
+import androidx.paging.PagingData
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Category(
     val AgeRangeId: String,
     val CategoryID: Int,
@@ -11,4 +16,4 @@ data class Category(
     val SectionPriority: Int,
     val Title: String,
     val ZoneID: Int
-)
+): Parcelable

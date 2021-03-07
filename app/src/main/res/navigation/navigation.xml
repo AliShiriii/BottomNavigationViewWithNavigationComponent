@@ -11,6 +11,19 @@
         android:label="fragment_request"
         tools:layout="@layout/fragment_request"
 
-        />
+        >
+        <action
+            android:id="@+id/action_requestFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_favorite"
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.testapplication.View.FavoriteFragment"
+        android:label="FavoriteFragment" >
+        <argument
+            android:name="Contents"
+            app:argType="com.example.testapplication.Model.GetContent" />
+    </fragment>
 
 </navigation>

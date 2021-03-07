@@ -11,21 +11,14 @@ import com.example.testapplication.Model.GetContent
 import com.example.testapplication.R
 import kotlinx.android.synthetic.main.row_view.view.*
 
-class RequestAdapter() : PagingDataAdapter<GetContent, RequestAdapter.MyViewHolder>(
+class RequestAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<GetContent, RequestAdapter.MyViewHolder>(
    PERSON_COMPARATOR ) {
 
-//
-//    private var items = emptyList<RequestBody>()
-//
-//    fun setData(item: List<RequestBody>?) {
-//
-//        if (item != null) {
-//            items = item
-//        }
-//
-//        notifyDataSetChanged()
-//
-//    }
+    interface OnItemClickListener{
+
+        fun onItemClick(content: GetContent)
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestAdapter.MyViewHolder {
 
@@ -46,15 +39,29 @@ class RequestAdapter() : PagingDataAdapter<GetContent, RequestAdapter.MyViewHold
         }
     }
 
-//
-//    override fun getItemCount(): Int {
-//
-//        return items.size
-//
-//    }
-
     @Suppress("DEPRECATION")
     inner class MyViewHolder(itemVew: View) : RecyclerView.ViewHolder(itemVew) {
+
+        init {
+
+            itemView.rootView.setOnClickListener {
+
+                val position = bindingAdapterPosition
+
+                if (position != RecyclerView.NO_POSITION){
+
+                    var item = getItem(position)
+
+                    if (item != null){
+
+                        listener.onItemClick(item)
+
+                    }
+                }
+
+            }
+
+        }
 
         fun bind(requestBody: GetContent) {
 

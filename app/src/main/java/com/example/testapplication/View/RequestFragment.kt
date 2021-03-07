@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Model.SendRequest
 import com.example.testapplication.Model.Request
 import com.example.testapplication.R
@@ -22,10 +24,7 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 @AndroidEntryPoint
-class RequestFragment : Fragment() {
-
-//    private var _binding: FragmentRequestBinding? = null
-//    private val binding get() = _binding!!
+class RequestFragment : Fragment(), RequestAdapter.OnItemClickListener {
 
     private lateinit var binding : FragmentRequestBinding
 
@@ -41,7 +40,7 @@ class RequestFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_request, container, false)
 
-        adapter = RequestAdapter()
+        adapter = RequestAdapter(this)
 
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = adapter
@@ -57,7 +56,14 @@ class RequestFragment : Fragment() {
 
             }
         }
+
         return binding.root
+    }
+
+    override fun onItemClick(content: GetContent) {
+
+        val action = RequestFragmentDirections.actionRequestFragmentToFavoriteFragment(content)
+        findNavController().navigate(action)
     }
 
 }

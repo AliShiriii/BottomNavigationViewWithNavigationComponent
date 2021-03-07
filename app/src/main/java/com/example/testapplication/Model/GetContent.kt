@@ -1,5 +1,9 @@
 package com.example.testapplication.Model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class GetContent(
     val AccessLevelTypeID: Int,
     val Authors: String,
@@ -35,4 +39,4 @@ data class GetContent(
     val UpdateDate: Double,
     val ViewCount: Int,
     val ZoneID: Int
-)
+): Parcelable
