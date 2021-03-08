@@ -3,27 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/requestFragment">
+    app:startDestination="@id/contentsFragment">
 
     <fragment
-        android:id="@+id/requestFragment"
+        android:id="@+id/contentsFragment"
         android:name="com.example.testapplication.View.RequestFragment"
-        android:label="fragment_request"
+        android:label="Contents"
         tools:layout="@layout/fragment_request"
 
         >
         <action
             android:id="@+id/action_requestFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
+            app:destination="@id/item_content" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_favorite"
-        android:id="@+id/favoriteFragment"
-        android:name="com.example.testapplication.View.FavoriteFragment"
-        android:label="FavoriteFragment" >
+        tools:layout="@layout/fragment_details"
+        android:id="@+id/item_content"
+        android:name="com.example.testapplication.View.DetailsFragment"
+        android:label="Content" >
         <argument
             android:name="Contents"
             app:argType="com.example.testapplication.Model.GetContent" />
     </fragment>
+    <fragment
+        tools:layout="@layout/fragment_all"
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.testapplication.View.FavoriteFragment"
+        android:label="FavoriteFragment" />
 
 </navigation>

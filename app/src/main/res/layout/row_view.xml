@@ -2,8 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
+        android:background="#CDC8C8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="300dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="4dp"
+        android:background="#fff"
+        android:layout_margin="4dp">
 
         <ImageView
             android:id="@+id/img_request"
@@ -36,6 +44,8 @@
             android:textSize="20sp"
             android:layout_alignParentEnd="true" />
 
+
+    </RelativeLayout>
 
     </RelativeLayout>
 

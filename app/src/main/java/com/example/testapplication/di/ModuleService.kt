@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.example.testapplication.Api.Connectivity
 import com.example.testapplication.Api.PrettyPrintLogger
 import com.example.testapplication.Api.RequestApi
+import com.example.testapplication.DataBase.RequestDataBase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -24,7 +25,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-object AppModule {
+object ModuleService {
 
     @Singleton
     @Provides
@@ -82,5 +83,20 @@ object AppModule {
     @Singleton
     fun provideMovieApi(retrofit: Retrofit): RequestApi =
         retrofit.create(RequestApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideFavoriteMoveDataBase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(
+            context,
+            RequestDataBase::class.java,
+            "movie_db"
+        ).build()
+
+
+    @Provides
+    @Singleton
+    fun provideFavoriteMoveDao(db: RequestDataBase) = db.getDao()
+
 
 }
