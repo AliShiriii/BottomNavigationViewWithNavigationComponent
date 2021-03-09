@@ -26,7 +26,11 @@ import org.json.JSONObject
 @AndroidEntryPoint
 class RequestFragment : Fragment(), RequestAdapter.OnItemClickListener {
 
-    private lateinit var binding : FragmentRequestBinding
+//    private lateinit var binding : FragmentRequestBinding
+
+    private var _binding : FragmentRequestBinding? = null
+
+    private val binding get() = _binding!!
 
     private val viewModel: RequestViewModel by viewModels()
 
@@ -38,7 +42,7 @@ class RequestFragment : Fragment(), RequestAdapter.OnItemClickListener {
     ): View {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_request, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_request, container, false)
 
         adapter = RequestAdapter(this)
 

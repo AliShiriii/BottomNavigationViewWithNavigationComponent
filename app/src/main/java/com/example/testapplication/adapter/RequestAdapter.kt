@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.testapplication.Model.GetContent
 import com.example.testapplication.R
+import com.example.testapplication.databinding.RowViewBinding
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_view.view.*
 
 class RequestAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<GetContent, RequestAdapter.MyViewHolder>(
@@ -22,9 +24,7 @@ class RequestAdapter(private val listener: OnItemClickListener) : PagingDataAdap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestAdapter.MyViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_view, parent, false)
-
-        return MyViewHolder(view)
+        return MyViewHolder(RowViewBinding.inflate(LayoutInflater.from(parent.context), parent,false))
 
     }
 
@@ -40,7 +40,7 @@ class RequestAdapter(private val listener: OnItemClickListener) : PagingDataAdap
     }
 
     @Suppress("DEPRECATION")
-    inner class MyViewHolder(itemVew: View) : RecyclerView.ViewHolder(itemVew) {
+    inner class MyViewHolder(val binding : RowViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
 
@@ -65,16 +65,16 @@ class RequestAdapter(private val listener: OnItemClickListener) : PagingDataAdap
 
         fun bind(requestBody: GetContent) {
 
-            itemView.apply {
+                binding.titleRequest.text = requestBody.Title
+                binding.summaryRequest.text = requestBody.Summary
 
-                title_request.text = requestBody.Title
-                summary_request.text = requestBody.Summary
+                Picasso.get().load(requestBody.LandscapeImage)
+                    .into(binding.imgRequest)
 
-                Glide.with(itemView)
-                    .load(requestBody.LandscapeImage)
-                    .into(itemView.img_request)
+//                Glide.with(itemView)
+//                    .load(requestBody.LandscapeImage)
+//                    .into(itemView.img_request)
 
-            }
         }
     }
 

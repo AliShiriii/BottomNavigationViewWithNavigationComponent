@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.testapplication.Entity.ContentEntity
 import com.example.testapplication.R
+import com.example.testapplication.databinding.FragmentFavoriteBinding
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_view.view.*
 
 class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
@@ -29,25 +31,23 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
     fun setList(list: List<ContentEntity>){
 
         this.list = list
-
         notifyDataSetChanged()
     }
 
-    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class MyViewHolder(val binding: FragmentFavoriteBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(contentEntity: ContentEntity){
 
-            itemView.apply {
 
-                title_request.text = contentEntity.Title
-                summary_request.text = contentEntity.Summary
+              binding.titleRequest.text = contentEntity.Title
+                binding.summaryRequest.text = contentEntity.Summary
 
-                Glide.with(itemView)
-                    .load(contentEntity.Image)
-                    .into(itemView.img_request)
+            Picasso.get().load(contentEntity.Image)
+                .into(binding.imgRequest)
+//                Glide.with(itemView)
+//                    .load(contentEntity.Image)
+//                    .into(binding.imgRequest)
 
-
-            }
 
             itemView.rootView.setOnClickListener {
 
@@ -59,9 +59,9 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_favorite, parent, false)
+        return MyViewHolder(FragmentFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-        return MyViewHolder(view)    }
+    }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 

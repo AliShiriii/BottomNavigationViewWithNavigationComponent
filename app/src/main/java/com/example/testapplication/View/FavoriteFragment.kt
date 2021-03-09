@@ -19,17 +19,21 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
-    private lateinit var binding: FragmentAllBinding
+//    private lateinit var binding: FragmentAllBinding
+
+    private var _binding : FragmentAllBinding? = null
+
+    private val binding get() = _binding!!
 
     private val viewModel: FavoriteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all, container, false)
+        _binding = FragmentAllBinding.inflate(inflater, container, false)
 
         val adapter = FavoriteAdapter()
 
@@ -44,24 +48,23 @@ class FavoriteFragment : Fragment() {
 
         }
 
+        adapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
+            override fun callBack(contentEntity: ContentEntity) {
 
-//
-//        adapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
-//            override fun callBack(contentEntity: ContentEntity) {
-//
-//                val getContent = GetContent(
-//                    contentEntity.contentID,
-//                    contentEntity.Image,
-//                    contentEntity.Summary,
-//                    contentEntity.Title
-//                )
-//
-//                val action =
-//                    FavoriteFragmentDirections.actionFavoriteToContentsFragment2(getContent)
-//                findNavController().navigate(action)
-//            }
-//
-//        })
+                val getContent = GetContent(
+                    contentEntity.contentID,
+                    contentEntity.Image,
+                    contentEntity.Summary,
+                    contentEntity.Title
+                )
+
+                val action = FavoriteFragmentDirections.actionFavoriteFragmentToItemContent(getContent)
+                findNavController().navigate(action)
+
+
+            }
+
+        })
 
         return binding.root
 

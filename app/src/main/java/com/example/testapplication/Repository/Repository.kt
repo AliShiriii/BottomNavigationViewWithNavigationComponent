@@ -18,8 +18,8 @@ class Repository @Inject constructor(private val requestApi: RequestApi) {
        return Pager(
 
            config = PagingConfig(
-               pageSize = 10,
-               maxSize = 50,
+               pageSize = 8,
+               maxSize = 24,
                enablePlaceholders = false
            ),
 

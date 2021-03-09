@@ -21,7 +21,11 @@ import kotlinx.coroutines.withContext
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
-    private lateinit var binding : FragmentDetailsBinding
+//    private lateinit var binding : FragmentDetailsBinding
+
+    private var _binding : FragmentDetailsBinding? = null
+
+    private val binding get() = _binding!!
 
     private val args by navArgs<DetailsFragmentArgs>()
 
@@ -33,7 +37,7 @@ class DetailsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_details, container, false)
+        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_details, container, false)
 
         binding.titles.text = args.Contents.Title
 
@@ -64,7 +68,6 @@ class DetailsFragment : Fragment() {
                 }
 
             }
-
 
         }
 

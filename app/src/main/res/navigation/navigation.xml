@@ -29,6 +29,10 @@
         tools:layout="@layout/fragment_all"
         android:id="@+id/favoriteFragment"
         android:name="com.example.testapplication.View.FavoriteFragment"
-        android:label="FavoriteFragment" />
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_item_content"
+            app:destination="@id/item_content" />
+    </fragment>
 
 </navigation>
