@@ -5,4 +5,4 @@ import org.json.JSONObject
 data class Request(
 
     val jsonObject: JSONObject
-    )
+)

@@ -17,14 +17,13 @@ interface RequestDao {
 //    @Delete
 //    suspend fun deleteFavorite(content: ContentEntity?)
 
-
-    @androidx.room.Query("DELETE FROM content_table WHERE content_table.content_ID = :id")
+    @Query("DELETE FROM content_table WHERE content_table.content_ID = :id")
     suspend fun deleteFromFavorite(id: Int)
 
-    @androidx.room.Query("SELECT * FROM content_table")
+    @Query("SELECT * FROM content_table")
     fun getAllFavorite() : LiveData<List<ContentEntity>>
 
-    @androidx.room.Query("SELECT count(*) FROM content_table WHERE content_table.content_ID = :id ")
+    @Query("SELECT count(*) FROM content_table WHERE content_table.content_ID = :id ")
     suspend fun checkFavorite(id : Int): Int
 
 

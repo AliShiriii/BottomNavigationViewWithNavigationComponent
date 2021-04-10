@@ -8,8 +8,6 @@ import retrofit2.http.*
 
 interface RequestApi {
 
-
-
     companion object{
 
         const val BASE_URL = "https://core.gapfilm.ir/mobile/request.asmx/"

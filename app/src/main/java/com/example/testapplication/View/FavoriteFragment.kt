@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.testapplication.Entity.ContentEntity
 import com.example.testapplication.Model.GetContent
@@ -15,9 +15,11 @@ import com.example.testapplication.ViewModel.FavoriteViewModel
 import com.example.testapplication.adapter.FavoriteAdapter
 import com.example.testapplication.databinding.FragmentAllBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : androidx.fragment.app.Fragment() {
 
 //    private lateinit var binding: FragmentAllBinding
 
@@ -27,6 +29,8 @@ class FavoriteFragment : Fragment() {
 
     private val viewModel: FavoriteViewModel by viewModels()
 
+    private var adapter: FavoriteAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,20 +39,39 @@ class FavoriteFragment : Fragment() {
 
         _binding = FragmentAllBinding.inflate(inflater, container, false)
 
-        val adapter = FavoriteAdapter()
+        addListToAdapter()
+        addListToDataBase()
+        addOnClickForItem()
+
+        return binding.root
+
+    }
+
+    fun addListToAdapter(){
+
+        adapter = FavoriteAdapter()
 
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = adapter
 
-        viewModel.getFavorite()
+    }
 
-        viewModel.favoriteData?.observe(viewLifecycleOwner) { newData ->
+    fun addListToDataBase(){
 
-            adapter.setList(newData)
+        lifecycleScope.launch {
+            viewModel.getFavorite()
 
+            viewModel.favoriteData?.observe(viewLifecycleOwner) { newData ->
+
+                adapter?.setList(newData)
+
+            }
         }
+    }
 
-        adapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
+    fun addOnClickForItem(){
+
+        adapter?.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
             override fun callBack(contentEntity: ContentEntity) {
 
                 val getContent = GetContent(
@@ -61,12 +84,9 @@ class FavoriteFragment : Fragment() {
                 val action = FavoriteFragmentDirections.actionFavoriteFragmentToItemContent(getContent)
                 findNavController().navigate(action)
 
-
             }
 
         })
-
-        return binding.root
 
     }
 }

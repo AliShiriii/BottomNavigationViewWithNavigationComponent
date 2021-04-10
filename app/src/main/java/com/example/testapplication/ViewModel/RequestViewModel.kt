@@ -6,18 +6,17 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RequestViewModel @ViewModelInject constructor(private val repository: Repository) :
+@HiltViewModel
+class RequestViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
     private val viewModelJob = Job()
@@ -28,13 +27,13 @@ class RequestViewModel @ViewModelInject constructor(private val repository: Repo
 //    val pushPost: LiveData<PagingData<GetContent>>
 //        get() = _pushBody
 
-    var pushPost : LiveData<PagingData<GetContent>>? = null
+    var pushPost = repository.getBody()
 
-    fun getBody() {
-
-            val request = repository.getBody()
-
-            pushPost = request
-
-    }
+//    fun getRequestBody() {
+//
+//        val request = repository.getBody()
+//
+//        _pushBody.value = request
+//
+//    }
 }

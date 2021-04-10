@@ -13,15 +13,15 @@ class FavoriteRepository @Inject constructor(private val requestDao: RequestDao)
         requestDao.insertFavorite(contentEntity)
     }
 
-    suspend fun upDateFavorite(contentEntity: ContentEntity){
-
-        requestDao.upDateFavorite(contentEntity)
-    }
-
-    suspend fun deleteFavorite(contentEntity: ContentEntity){
-
-        requestDao.deleteFavorite(contentEntity)
-    }
+//    suspend fun upDateFavorite(contentEntity: ContentEntity){
+//
+//        requestDao.upDateFavorite(contentEntity)
+//    }
+//
+//    suspend fun deleteFavorite(contentEntity: ContentEntity){
+//
+//        requestDao.deleteFavorite(contentEntity)
+//    }
 
     fun getAllFavorite() : LiveData<List<ContentEntity>> {
 

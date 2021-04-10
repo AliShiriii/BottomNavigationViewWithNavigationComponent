@@ -1,21 +1,26 @@
 package com.example.testapplication.ViewModel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.testapplication.Entity.ContentEntity
 import com.example.testapplication.Repository.FavoriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor(private val favoriteRepository: FavoriteRepository): ViewModel() {
+class FavoriteViewModel @Inject constructor(private val favoriteRepository: FavoriteRepository) :
+    ViewModel() {
 
 
+    private val viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 //    private val _pushBody = MutableLiveData<List<ContentEntity>>()
 
-    var favoriteData : LiveData<List<ContentEntity>>? = null
-
+    var favoriteData: LiveData<List<ContentEntity>>? = null
 
     fun getFavorite() {
 

@@ -13,9 +13,9 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val requestApi: RequestApi) {
 
-    fun getBody(): LiveData<PagingData<GetContent>> {
+    fun getBody() =
 
-       return Pager(
+        Pager(
 
            config = PagingConfig(
                pageSize = 8,
@@ -26,6 +26,4 @@ class Repository @Inject constructor(private val requestApi: RequestApi) {
            pagingSourceFactory = { RequestPagingSource(requestApi) }
 
        ).liveData
-
-    }
 }

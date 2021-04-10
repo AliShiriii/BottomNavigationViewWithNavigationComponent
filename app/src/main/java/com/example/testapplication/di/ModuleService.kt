@@ -98,5 +98,4 @@ object ModuleService {
     @Singleton
     fun provideFavoriteMoveDao(db: RequestDataBase) = db.getDao()
 
-
 }
