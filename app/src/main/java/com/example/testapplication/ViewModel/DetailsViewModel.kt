@@ -3,6 +3,7 @@ package com.example.testapplication.ViewModel
 import android.view.View
 import android.view.ViewManager
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.testapplication.Entity.ContentEntity
 import com.example.testapplication.Model.GetContent
 import com.example.testapplication.Repository.FavoriteRepository
@@ -22,7 +23,7 @@ class DetailsViewModel @Inject constructor(private val favoriteRepository: Favor
 
      fun insertFavorite(getContent: GetContent) {
 
-        uiScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
 
             favoriteRepository.insertFavorite(
                 ContentEntity(

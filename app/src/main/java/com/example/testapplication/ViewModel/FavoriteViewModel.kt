@@ -15,11 +15,6 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(private val favoriteRepository: FavoriteRepository) :
     ViewModel() {
 
-
-    private val viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-//    private val _pushBody = MutableLiveData<List<ContentEntity>>()
-
     var favoriteData: LiveData<List<ContentEntity>>? = null
 
     fun getFavorite() {

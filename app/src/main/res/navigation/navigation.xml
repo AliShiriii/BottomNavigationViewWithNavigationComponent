@@ -3,36 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/contentsFragment">
+    app:startDestination="@id/Request">
 
     <fragment
-        android:id="@+id/contentsFragment"
+        android:id="@+id/Request"
         android:name="com.example.testapplication.View.RequestFragment"
-        android:label="Contents"
+        android:label="Request"
         tools:layout="@layout/fragment_request"
 
         >
         <action
-            android:id="@+id/action_requestFragment_to_favoriteFragment"
-            app:destination="@id/item_content" />
+            android:id="@+id/action_Request_to_Details"
+            app:destination="@id/Details" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_details"
-        android:id="@+id/item_content"
+        android:id="@+id/Details"
         android:name="com.example.testapplication.View.DetailsFragment"
-        android:label="Content" >
+        android:label="Details"
+        tools:layout="@layout/fragment_details">
         <argument
-            android:name="Contents"
+            android:name="contents"
             app:argType="com.example.testapplication.Model.GetContent" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_all"
-        android:id="@+id/favoriteFragment"
+        android:id="@+id/favorite"
         android:name="com.example.testapplication.View.FavoriteFragment"
-        android:label="FavoriteFragment" >
+        android:label="Favorite"
+        tools:layout="@layout/fragment_all">
         <action
-            android:id="@+id/action_favoriteFragment_to_item_content"
-            app:destination="@id/item_content" />
+            android:id="@+id/action_favorite_to_Details"
+            app:destination="@id/Details" />
     </fragment>
 
 </navigation>

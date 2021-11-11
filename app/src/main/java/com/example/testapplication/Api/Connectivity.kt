@@ -9,6 +9,7 @@ import okhttp3.Response
 
 @Suppress("DEPRECATION")
 class Connectivity(private val context: Context): Interceptor {
+
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isInternetAvailable(context)) throw NoInternetException("Please Check Your Connectivity")
         return chain.proceed(chain.request())

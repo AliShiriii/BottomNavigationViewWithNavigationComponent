@@ -19,11 +19,8 @@ class RequestFragment : androidx.fragment.app.Fragment(), RequestAdapter.OnItemC
 //    private lateinit var binding : FragmentRequestBinding
 
     private var _binding: FragmentRequestBinding? = null
-
     private val binding get() = _binding!!
-
     private val viewModel: RequestViewModel by viewModels()
-
     private lateinit var adapter: RequestAdapter
 
     override fun onCreateView(
@@ -55,7 +52,7 @@ class RequestFragment : androidx.fragment.app.Fragment(), RequestAdapter.OnItemC
 
     override fun onItemClick(content: GetContent) {
 
-        val action = RequestFragmentDirections.actionRequestFragmentToFavoriteFragment(content)
+        val action = RequestFragmentDirections.actionRequestToDetails(content)
         findNavController().navigate(action)
     }
 

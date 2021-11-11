@@ -69,7 +69,7 @@ class FavoriteFragment : androidx.fragment.app.Fragment() {
         }
     }
 
-    fun addOnClickForItem(){
+    private fun addOnClickForItem(){
 
         adapter?.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
             override fun callBack(contentEntity: ContentEntity) {
@@ -81,7 +81,7 @@ class FavoriteFragment : androidx.fragment.app.Fragment() {
                     contentEntity.Title
                 )
 
-                val action = FavoriteFragmentDirections.actionFavoriteFragmentToItemContent(getContent)
+                val action = FavoriteFragmentDirections.actionFavoriteToDetails(getContent)
                 findNavController().navigate(action)
 
             }

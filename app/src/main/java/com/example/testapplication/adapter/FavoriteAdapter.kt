@@ -38,7 +38,6 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
         fun bind(contentEntity: ContentEntity){
 
-
               binding.titleRequest.text = contentEntity.Title
                 binding.summaryRequest.text = contentEntity.Summary
 

@@ -16,11 +16,11 @@ import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 @HiltViewModel
-class RequestViewModel @Inject constructor(private val repository: Repository) :
+class RequestViewModel @Inject constructor(repository: Repository) :
     ViewModel() {
 
-    private val viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+//    private val viewModelJob = Job()
+//    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 //    private val _pushBody = MutableLiveData<PagingData<GetContent>>()
 //

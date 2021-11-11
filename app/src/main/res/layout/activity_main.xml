@@ -33,6 +33,7 @@
             android:layout_alignParentBottom="true"
             android:background="#CDDC39"
             app:menu="@menu/nav_menu" />
+
     </RelativeLayout>
 
 </layout>

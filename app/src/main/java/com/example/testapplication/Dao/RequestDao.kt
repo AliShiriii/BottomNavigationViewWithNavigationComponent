@@ -13,10 +13,9 @@ interface RequestDao {
 //
 //    @Update
 //    suspend fun upDateFavorite(content: ContentEntity?)
-//
+
 //    @Delete
 //    suspend fun deleteFavorite(content: ContentEntity?)
-
 
     @androidx.room.Query("DELETE FROM content_table WHERE content_table.content_ID = :id")
     suspend fun deleteFromFavorite(id: Int)
