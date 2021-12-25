@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var nav_Button : BottomNavigationView
+    private lateinit var navigationButton : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
 
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        nav_Button = binding.navButton
+        navigationButton = binding.navButton
 
         NavigationUI.setupActionBarWithNavController(this, navController )
-        NavigationUI.setupWithNavController(nav_Button, navController)
+        NavigationUI.setupWithNavController(navigationButton, navController)
 
     }
 

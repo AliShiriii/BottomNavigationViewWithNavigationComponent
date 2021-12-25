@@ -13,10 +13,4 @@
         android:icon="@drawable/ic_favorite_white"
         />
 
-<!--    Navigation & Fragment - MVVM Movie App (Retrofit, Room, Dagger Hilt, Paging, View Binding)-->
-
-
-
-<!--     "diffUtils"-->
-<!--    "https://www.youtube.com/watch?v=cppys4VYyvA&t=7s-->
 </menu>

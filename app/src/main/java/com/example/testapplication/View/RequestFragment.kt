@@ -1,6 +1,7 @@
 package com.example.testapplication.View
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RequestFragment : androidx.fragment.app.Fragment(), RequestAdapter.OnItemClickListener {
-
-//    private lateinit var binding : FragmentRequestBinding
 
     private var _binding: FragmentRequestBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +35,7 @@ class RequestFragment : androidx.fragment.app.Fragment(), RequestAdapter.OnItemC
         return binding.root
     }
 
-    fun addListRequestToRecycler(){
+    private fun addListRequestToRecycler() {
 
         adapter = RequestAdapter(this)
 
@@ -44,7 +43,7 @@ class RequestFragment : androidx.fragment.app.Fragment(), RequestAdapter.OnItemC
         binding.recyclerView.adapter = adapter
 
         viewModel.pushPost.observe(viewLifecycleOwner) { response ->
-//                Log.i("TAG: ", response.toString())
+            Log.i("TAG: ", response.toString())
             adapter.submitData(viewLifecycleOwner.lifecycle, response)
 
         }
